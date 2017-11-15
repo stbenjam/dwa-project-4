@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/credit_cards', 'CreditCardsController@index');
+Route::get('/categories', 'CategoriesController@index');
+
 Route::get('/debug', function () {
 
     $debug = [

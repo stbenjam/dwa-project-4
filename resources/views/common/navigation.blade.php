@@ -6,8 +6,8 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Credit Cards</a>
-            <a class="nav-item nav-link" href="#">Categories</a>
+            <a class="nav-item nav-link" href="/credit_cards">Credit Cards</a>
+            <a class="nav-item nav-link" href="/categories">Categories</a>
         </div>
 
         <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
