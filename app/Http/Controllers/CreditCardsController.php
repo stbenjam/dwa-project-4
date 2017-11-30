@@ -45,4 +45,14 @@ class CreditCardsController extends Controller
         return redirect('/credit_cards')->with('alert', 'The credit card '.$request->input('name').' was added.');
     }
 
+    /**
+     * Delete a credit card
+     *
+     * DELETE /credit_card/{id}
+     */
+     public function delete(Request $request, $id) {
+         $credit_card = CreditCard::find($id);
+         $credit_card->delete();
+         return redirect('/credit_cards');
+     }
 }
