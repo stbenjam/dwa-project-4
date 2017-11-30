@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/credit_cards', 'CreditCardsController@index');
+Route::get('/credit_cards/new', 'CreditCardsController@create');
+Route::post('/credit_cards', 'CreditCardsController@store');
+
 Route::get('/categories', 'CategoriesController@index');
 
 Route::get('/debug', function () {
