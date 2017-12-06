@@ -14,10 +14,17 @@
 <table class="table table-striped table-bordered">
     @foreach ($categories as $category)
         <tr>
-            <td>{{ $category->name }}</td>
-            <td>
+            <td class="col-md-6">{{ $category->name }}</td>
+            <td class="col-md-2">
+                <div class="btn-group" role="group">
                 <a href="categories/edit/{{ $category->id}}" class="btn btn-info btn-large">Edit</a>
-                <a href="categories/edit/{{ $category->id}}" class="btn btn-danger btn-large">Delete</a>
+
+                <form action="/categories/{{ $category->id }}" method="POST">
+                    {{ method_field('DELETE') }}
+                    {{ csrf_field() }}
+                    <input type="submit" class="btn btn-danger btn-large" value="Delete" onClick="return confirm('Are you sure?');">
+                </form>
+                </div>
             </td>
         </tr>
     @endforeach

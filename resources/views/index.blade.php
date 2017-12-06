@@ -8,4 +8,23 @@
 
 @section('content')
 
+<div class="jumbotron">
+Reward Maximizer helps you take advantage of all the credit cards you have to
+maximize rewards.  Choose the cards you have below, and you'll get a summary of
+which card to use for which category of purchases.
+</div>
+
+<form action="/calculate" METHOD="post">
+    @foreach ($cards as $card)
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="">
+        {{ $card->name }}
+      </label>
+    </div>
+    @endforeach
+
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+
 @endsection
