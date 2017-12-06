@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategorySeeder::class);
         $this->call(CreditCardSeeder::class);
+        $this->call(CreditCardCategorySeeder::class);
     }
 }

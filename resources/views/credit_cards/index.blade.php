@@ -15,16 +15,20 @@
     @foreach ($cards as $card)
         <tr>
             <td class="col-md-6">{{ $card->name }}</td>
-            <td class="col-md-2">
-                <div class="btn-group" role="group">
-                <a href="credit_cards/edit/{{ $card->id}}" class="btn btn-info btn-large">Edit</a>
+            <td class="col-md-1">
+                <a href="credit_cards/{{ $card->id}}/categories" class="btn btn-success btn-large">Categories</a>
+            </td>
 
-                <form action="/credit_cards/{{ $card->id }}" method="POST">
+            <td class="col-md-2">
+                <form action="/credit_cards/{{ $card->id }}" method="POST" id="card_delete_{{ $card->id }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-danger btn-large" value="Delete" onClick="return confirm('Are you sure?');">
+
+                    <div class="btn-group" role="group">
+                        <a href="credit_cards/edit/{{ $card->id}}" class="btn btn-info btn-large">Edit</a>
+                        <a href="#" class="btn btn-danger btn-large" onClick="if(confirm('Are you sure?')) document.getElementById('card_delete_{{ $card->id }}').submit(); else return false;">Delete</a>
+                    </div>
                 </form>
-                </div>
             </td>
         </tr>
     @endforeach

@@ -13,7 +13,8 @@ class CategorySeeder extends Seeder
           "Restaurants",
           "Everything Else",
           "Gas",
-          "Movie Theaters",
+	  "Movie Theaters",
+	  "Travel",
         ];
 
         foreach($categories as $category) {
