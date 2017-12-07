@@ -18,6 +18,8 @@ Route::get('/credit_cards/new', 'CreditCardsController@create');
 Route::post('/credit_cards', 'CreditCardsController@store');
 Route::delete('/credit_cards/{id}', 'CreditCardsController@delete');
 
+Route::get('/credit_cards/{id}/categories', 'CreditCardCategoriesController@index');
+
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/categories/new', 'CategoriesController@create');
 Route::post('/categories', 'CategoriesController@store');
