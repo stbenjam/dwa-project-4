@@ -6,6 +6,12 @@
 <p />
 <h1>Categories for {{ $credit_card->name }}</h1>
 
+<div align="right">
+    <p>
+        <a href="/credit_cards/{{ $credit_card->id }}/categories/new" class="btn btn-success btn-large">New</a>
+    </p>
+</div>
+
 <table class="table table-striped table-bordered">
 	<tr>
 	    <th>Category</th>
