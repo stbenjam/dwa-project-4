@@ -14,6 +14,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Schema::defaultStringLength(191);
+
+        view()->composer('*', function($view){
+            $view_name = $view->getName();
+
+            if(strpos($view_name, '.')) {
+                $location = explode('.', $view->getName())[0];
+            } else {
+                $location = 'root';
+            }
+
+            view()->share('navbar_location', $location);
+        });
     }
 
     /**
