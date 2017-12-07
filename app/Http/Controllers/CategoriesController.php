@@ -51,7 +51,10 @@ class CategoriesController extends Controller
      */
      public function delete(Request $request, $id) {
          $category = Category::find($id);
+         $name = $category->name;
+
          $category->delete();
-         return redirect('/categories');
+
+         return redirect('/categories')->with('alert', 'The category '.$name.' was deleted.');
      }
 }
