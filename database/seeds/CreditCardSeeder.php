@@ -11,13 +11,14 @@ class CreditCardSeeder extends Seeder
             "Chase Sapphire Preferred",
             "Chase Freedom Unlimited",
             "Chase Freedom",
+            "JetBlue Plus",
         ];
-    
+
         foreach($cards as $card) {
             CreditCard::insert([
                 'name' => $card,
             ]);
         }
-    
+
     }
 }

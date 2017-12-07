@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CreditCard;
+use App\CreditCardCategory;
 
 class CreditCardsController extends Controller
 {
@@ -55,4 +56,21 @@ class CreditCardsController extends Controller
          $credit_card->delete();
          return redirect('/credit_cards');
      }
+
+    public function calculate(Request $request) {
+        $credit_cards = \Request::get('credit_cards');
+        $credit_cards = array_values($credit_cards);
+
+        $results = CreditCardCategory::with('category', 'credit_card')->whereIn('credit_card_id', $credit_cards)->orderBy('earn_rate', 'desc')->get()->groupBy('category_id');
+
+        $max_earn = [];
+
+        foreach($results as $result) {
+            array_push($max_earn, $result->first());
+        }
+
+        return view('credit_cards.calculate')->with([
+            'results' => $max_earn,
+        ]);
+    }
 }

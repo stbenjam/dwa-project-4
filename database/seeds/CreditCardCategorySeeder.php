@@ -30,6 +30,13 @@ class CreditCardCategorySeeder extends Seeder
                 'Everything Else'   => 1.5,
             ],
 
+            'JetBlue Plus' => [
+                'JetBlue purchases' => 6.0,
+                'Restaurants'       => 2.0,
+                'Grocery stores'    => 2.0,
+                'Everything else'   => 1.0,
+            ],
+
         ];
 
         foreach ($credit_cards_categories as $credit_card_name => $categories) {
