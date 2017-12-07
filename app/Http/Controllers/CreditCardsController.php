@@ -59,8 +59,18 @@ class CreditCardsController extends Controller
          return redirect('/credit_cards')->with('alert', 'The credit card '.$name.' was deleted.');
      }
 
+    /**
+     * Calculate the optimal credit card reward strategy.
+     *
+     * POST /calculate
+     */
     public function calculate(Request $request) {
         $credit_cards = \Request::get('credit_cards');
+
+        if(!$credit_cards) {
+            return redirect('/')->with('alert-danger', 'You must select at least one credit card');
+        }
+
         $credit_cards = array_values($credit_cards);
 
         $results = CreditCardCategory::with('category', 'credit_card')->whereIn('credit_card_id', $credit_cards)->orderBy('earn_rate', 'desc')->get()->groupBy('category_id');
