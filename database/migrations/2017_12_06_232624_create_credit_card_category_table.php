@@ -14,15 +14,15 @@ class CreateCreditCardCategoryTable extends Migration
     public function up()
     {
         Schema::create('credit_card_category', function (Blueprint $table) {
-            $table->increments('id');
+        $table->increments('id');
 	    $table->timestamps();
 
 	    # FK's to credit_card and category
 	    $table->integer('credit_card_id')->unsigned();
 	    $table->integer('category_id')->unsigned();
-	    $table->foreign('credit_card_id')->references('id')->on('credit_cards');
-	    $table->foreign('category_id')->references('id')->on('categories');
-	    
+	    $table->foreign('credit_card_id')->references('id')->on('credit_cards')->onDelete('cascade');
+	    $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
 	    # Earn rate
 	    $table->decimal('earn_rate', 3, 2);
         });
