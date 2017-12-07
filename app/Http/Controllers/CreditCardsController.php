@@ -53,8 +53,10 @@ class CreditCardsController extends Controller
      */
      public function delete(Request $request, $id) {
          $credit_card = CreditCard::find($id);
+         $name = $credit_card->name;
          $credit_card->delete();
-         return redirect('/credit_cards');
+
+         return redirect('/credit_cards')->with('alert', 'The credit card '.$name.' was deleted.');
      }
 
     public function calculate(Request $request) {

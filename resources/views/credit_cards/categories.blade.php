@@ -18,13 +18,13 @@
 	    <td class="col-md-2">{{ $category->earn_rate }}</td>
 
             <td class="col-md-2">
-                <form action="/credit_cards/{{ $credit_card->id }}/categories/{{ $category->id }}" method="POST" id="delete_{{ $category->id }}">
+                <form action="/credit_cards/{{ $credit_card->id }}/categories/{{ $category->category->id }}" method="POST" id="delete_{{ $category->category->id }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
 
                     <div class="btn-group" role="group">
-                        <a href="/credit_cards/{{ $credit_card->id }}/categories/{{ $category->id }}/edit" class="btn btn-info btn-large">Edit</a>
-                        <a href="#" class="btn btn-danger btn-large" onClick="if(confirm('Are you sure?')) document.getElementById('delete_{{ $category->id }}').submit(); else return false;">Delete</a>
+                        <a href="/credit_cards/{{ $credit_card->id }}/categories/{{ $category->category->id }}/edit" class="btn btn-info btn-large">Edit</a>
+                        <a href="#" class="btn btn-danger btn-large" onClick="if(confirm('Are you sure?')) document.getElementById('delete_{{ $category->category->id }}').submit(); else return false;">Delete</a>
                     </div>
                 </form>
             </td>

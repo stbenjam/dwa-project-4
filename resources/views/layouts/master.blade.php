@@ -14,6 +14,18 @@
     </head>
     <body>
         @include("common.navigation")
+        @if(session('alert'))
+        <div class='alert alert-success'>
+            {{ session('alert') }}
+        </div>
+        @endif
+
+        @if(session('alert-danger'))
+        <div class='alert alert-danger'>
+            {{ session('alert-danger') }}
+        </div>
+        @endif
+
         <div class="container">
 
             @yield('content')
