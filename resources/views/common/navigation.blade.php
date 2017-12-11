@@ -11,7 +11,7 @@
         </div>
 
         <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-            <a href="http://github.com/stbenjam/dwa-project-4/" class="nav-link"><i class="fa fa-github fa-2x"></i></a> 
+            <a href="http://github.com/stbenjam/dwa-project-4/" class="nav-link"><i class="fa fa-github fa-2x"></i></a>
         </div>
     </div>
 </nav>
