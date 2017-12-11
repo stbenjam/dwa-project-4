@@ -21,7 +21,7 @@
                     {{ csrf_field() }}
 
                     <div class="btn-group" role="group">
-                        <a href="categories/edit/{{ $category->id}}" class="btn btn-info btn-large">Edit</a>
+                        <a href="categories/{{ $category->id}}/edit" class="btn btn-info btn-large">Edit</a>
                         <a href="#" class="btn btn-danger btn-large" onClick="if(confirm('Are you sure?')) document.getElementById('category_delete_{{ $category->id }}').submit(); else return false;">Delete</a>
                     </div>
                 </form>

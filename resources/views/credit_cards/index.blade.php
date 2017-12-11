@@ -25,7 +25,7 @@
                     {{ csrf_field() }}
 
                     <div class="btn-group" role="group">
-                        <a href="credit_cards/edit/{{ $card->id}}" class="btn btn-info btn-large">Edit</a>
+                        <a href="credit_cards/{{ $card->id}}/edit" class="btn btn-info btn-large">Edit</a>
                         <a href="#" class="btn btn-danger btn-large" onClick="if(confirm('Are you sure?')) document.getElementById('card_delete_{{ $card->id }}').submit(); else return false;">Delete</a>
                     </div>
                 </form>

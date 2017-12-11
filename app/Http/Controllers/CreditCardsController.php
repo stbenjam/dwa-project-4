@@ -30,6 +30,36 @@ class CreditCardsController extends Controller
     }
 
     /**
+     * Edit a credit card
+     *
+     * GET /credit_cards/{{id }}/edit
+     */
+    public function edit(Request $request, $id) {
+
+        return view('credit_cards.edit')->with([
+            'name' => CreditCard::find($id)->name,
+            'id'   => $id,
+        ]);
+    }
+
+    /**
+     * Update a credit card
+     *
+     * PUT /credit_cards
+     */
+    public function update(Request $request, $id) {
+        $this->validate($request, [
+            'name'  => 'required|min:3',
+        ]);
+
+        $credit_card = CreditCard::find($id);
+        $credit_card->name = $request->input('name');
+        $credit_card->save();
+
+        return redirect('/credit_cards')->with('alert', 'The credit card '.$request->input('name').' was updated.');
+    }
+
+    /**
      * Store a new credit card
      *
      * POST /credit_cards
