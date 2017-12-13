@@ -25,6 +25,8 @@ Route::delete('/credit_cards/{id}', 'CreditCardsController@delete');
 Route::get('/credit_cards/{id}/categories', 'CreditCardCategoriesController@index');
 Route::get('/credit_cards/{id}/categories/new', 'CreditCardCategoriesController@create');
 Route::post('/credit_cards/{id}/categories', 'CreditCardCategoriesController@store');
+Route::get('/credit_cards/{credit_card_id}/categories/{category_id}/edit', 'CreditCardCategoriesController@edit');
+Route::put('/credit_cards/{credit_card_id}/categories/{category_id}', 'CreditCardCategoriesController@update');
 Route::delete('/credit_cards/{credit_card_id}/categories/{category_id}', 'CreditCardCategoriesController@delete');
 
 Route::get('/categories', 'CategoriesController@index');

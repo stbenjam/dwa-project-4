@@ -58,6 +58,40 @@ class CreditCardCategoriesController extends Controller
         return redirect("/credit_cards/$id/categories")->with('alert', 'Category with earn rate '.$request->input('earn_rate').' was added.');
     }
 
+    /**
+     * Edit a credit card category
+     *
+     * GET /credit_cards/{{ credit_card_id }}/categories/{{ category_id }}/edit
+     */
+    public function edit(Request $request, $credit_card_id, $category_id) {
+         $ccc = CreditCardCategory::with('category')->where('credit_card_id', '=', $credit_card_id)->where('category_id','=',$category_id)->first();
+
+         $category = $ccc->category;
+
+         return view('credit_cards.edit_category')->with([
+            'category'       => $category,
+            'credit_card_id' => $credit_card_id,
+            'earn_rate'      => $ccc->earn_rate,
+            'category_id'    => $category_id,
+            'ccc'            => $ccc,
+        ]);
+    }
+
+    /**
+     * Update a credit card category
+     *
+     * PUT /credit_cards/{{ credit_card_id }}/categories/{{ category_id }}
+     */
+    public function update(Request $request, $credit_card_id, $category_id) {
+
+        $this->validate($request, [
+            'earn_rate'      => 'regex:/[0-9]+(\.[0-9][0-9]?)?/',
+        ]);
+
+        CreditCardCategory::with('category')->where('credit_card_id', '=', $credit_card_id)->where('category_id','=',$category_id)->update(['earn_rate'=>$request->input('earn_rate')]);
+
+        return redirect("/credit_cards/$credit_card_id/categories")->with('alert', 'The credit card category was updated.');
+    }
 
     /**
      * Delete category/cc assocation
