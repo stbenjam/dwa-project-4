@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Create a new credit card
+     * Create a new category
      *
      * GET /categories/new
      */
@@ -28,7 +28,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Store a new credit card
+     * Store a new category
      *
      * POST /categories
      */
@@ -45,7 +45,37 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Delete a credit card
+     * Edit a category
+     *
+     * GET /categories/{{id }}/edit
+     */
+    public function edit(Request $request, $id) {
+
+        return view('categories.edit')->with([
+            'name' => Category::find($id)->name,
+            'id'   => $id,
+        ]);
+    }
+
+    /**
+     * Update a category
+     *
+     * PUT /categories
+     */
+    public function update(Request $request, $id) {
+        $this->validate($request, [
+            'name'  => 'required|min:3',
+        ]);
+
+        $category = Category::find($id);
+        $category->name = $request->input('name');
+        $category->save();
+
+        return redirect('/categories')->with('alert', 'The category '.$request->input('name').' was updated.');
+    }
+
+    /**
+     * Delete a category
      *
      * DELETE /category/{id}
      */

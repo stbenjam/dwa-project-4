@@ -16,9 +16,9 @@ Route::get('/', 'RewardMaximizerController@index');
 Route::get('/calculate', 'CreditCardsController@calculate');
 
 Route::get('/credit_cards', 'CreditCardsController@index');
-Route::get('/credit_cards/{id}/edit', 'CreditCardsController@edit');
 Route::get('/credit_cards/new', 'CreditCardsController@create');
 Route::post('/credit_cards', 'CreditCardsController@store');
+Route::get('/credit_cards/{id}/edit', 'CreditCardsController@edit');
 Route::put('/credit_cards/{id}', 'CreditCardsController@update');
 Route::delete('/credit_cards/{id}', 'CreditCardsController@delete');
 
@@ -32,6 +32,8 @@ Route::delete('/credit_cards/{credit_card_id}/categories/{category_id}', 'Credit
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/categories/new', 'CategoriesController@create');
 Route::post('/categories', 'CategoriesController@store');
+Route::get('/categories/{id}/edit', 'CategoriesController@edit');
+Route::put('/categories/{id}', 'CategoriesController@update');
 Route::delete('/categories/{id}', 'CategoriesController@delete');
 
 Route::get('/debug', function () {
