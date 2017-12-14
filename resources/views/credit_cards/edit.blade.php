@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-<p>
+<p></p>
 <h1>Update Credit Card</h1>
 
     <form method="POST" action="/credit_cards/{{ $id }}">

@@ -3,10 +3,10 @@
 @section('content')
 
 <div class="container">
-<p />
+<p></p>
 <h1>Categories for {{ $credit_card->name }}</h1>
 
-<div align="right">
+<div>
     <p>
         <a href="/credit_cards/{{ $credit_card->id }}/categories/new" class="btn btn-success btn-large">New</a>
     </p>

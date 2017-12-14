@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-<p>
+<p></p>
 <h1>Update Credit Card Category</h1>
 
     <form method="POST" action="/credit_cards/{{ $credit_card_id }}/categories/{{ $category_id }}">
