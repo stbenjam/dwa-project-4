@@ -5,7 +5,7 @@
 <div class="container">
 <h1>Credit Cards</h1>
 
-<div align="right">
+<div>
     <p>
         <a href="credit_cards/new" class="btn btn-success btn-large">New</a>
     </p>

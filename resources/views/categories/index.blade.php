@@ -5,7 +5,7 @@
 <div class="container">
 <h1>Categories</h1>
 
-<div align="right">
+<div>
     <p>
         <a href="categories/new" class="btn btn-success btn-large">New</a>
     </p>
