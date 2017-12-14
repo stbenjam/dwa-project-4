@@ -29,7 +29,8 @@ class CreditCardCategoriesController extends Controller
     public function create($id) {
         $credit_card = CreditCard::find($id);
 
-        $existing = CreditCardCategory::where('credit_card_id', '=', $id)->pluck('category_id');
+        $existing = CreditCardCategory::where('credit_card_id', '=', $id)
+            ->pluck('category_id');
 
         return view('credit_cards.create_category')->with([
             'id'          => $id,
@@ -55,7 +56,9 @@ class CreditCardCategoriesController extends Controller
         $card_category->earn_rate = $request->input('earn_rate');
         $card_category->save();
 
-        return redirect("/credit_cards/$id/categories")->with('alert', 'Category with earn rate '.$request->input('earn_rate').' was added.');
+        return redirect("/credit_cards/$id/categories")->with(
+            'alert', 'Category with earn rate '.$request->input('earn_rate').' was added.'
+        );
     }
 
     /**
@@ -64,11 +67,13 @@ class CreditCardCategoriesController extends Controller
      * GET /credit_cards/{{ credit_card_id }}/categories/{{ category_id }}/edit
      */
     public function edit(Request $request, $credit_card_id, $category_id) {
-         $ccc = CreditCardCategory::with('category')->where('credit_card_id', '=', $credit_card_id)->where('category_id','=',$category_id)->first();
+        $ccc = CreditCardCategory::with('category')
+            ->where('credit_card_id', '=', $credit_card_id)
+            ->where('category_id','=',$category_id)->first();
 
-         $category = $ccc->category;
+        $category = $ccc->category;
 
-         return view('credit_cards.edit_category')->with([
+        return view('credit_cards.edit_category')->with([
             'category'       => $category,
             'credit_card_id' => $credit_card_id,
             'earn_rate'      => $ccc->earn_rate,
@@ -88,9 +93,14 @@ class CreditCardCategoriesController extends Controller
             'earn_rate'      => 'regex:/[0-9]+(\.[0-9][0-9]?)?/',
         ]);
 
-        CreditCardCategory::with('category')->where('credit_card_id', '=', $credit_card_id)->where('category_id','=',$category_id)->update(['earn_rate'=>$request->input('earn_rate')]);
+        # Update the earn rate
+        CreditCardCategory::with('category')
+            ->where('credit_card_id', '=', $credit_card_id)
+            ->where('category_id','=',$category_id)
+            ->update(['earn_rate'=>$request->input('earn_rate')]);
 
-        return redirect("/credit_cards/$credit_card_id/categories")->with('alert', 'The credit card category was updated.');
+        return redirect("/credit_cards/$credit_card_id/categories")
+            ->with('alert', 'The credit card category was updated.');
     }
 
     /**
@@ -99,11 +109,20 @@ class CreditCardCategoriesController extends Controller
      * DELETE /credit_cards/{credit_card_id}/categories/{category_id}
      */
     public function delete(Request $request, $credit_card_id, $category_id) {
+        $ccc = CreditCardCategory::with('category')
+            ->where('credit_card_id', '=', $credit_card_id)
+            ->where('category_id','=',$category_id)
+            ->first();
 
-         $ccc = CreditCardCategory::with('category')->where('credit_card_id', '=', $credit_card_id)->where('category_id','=',$category_id)->first();
-         $name = $ccc->category->name;
-         CreditCardCategory::with('category')->where('credit_card_id', '=', $credit_card_id)->where('category_id','=',$category_id)->delete();
+        $name = $ccc->category->name;
 
-         return redirect("/credit_cards/$credit_card_id/categories")->with('alert', "$name was deleted.");
+        # Delete the record, can't just call delete :-(
+        CreditCardCategory::with('category')
+            ->where('credit_card_id', '=', $credit_card_id)
+            ->where('category_id','=',$category_id)
+            ->delete();
+
+        return redirect("/credit_cards/$credit_card_id/categories")
+            ->with('alert', "$name was deleted.");
     }
 }

@@ -56,7 +56,8 @@ class CreditCardsController extends Controller
         $credit_card->name = $request->input('name');
         $credit_card->save();
 
-        return redirect('/credit_cards')->with('alert', 'The credit card '.$request->input('name').' was updated.');
+        return redirect('/credit_cards')
+            ->with('alert', 'The credit card '.$request->input('name').' was updated.');
     }
 
     /**
@@ -73,7 +74,8 @@ class CreditCardsController extends Controller
         $credit_card->name = $request->input('name');
         $credit_card->save();
 
-        return redirect('/credit_cards')->with('alert', 'The credit card '.$request->input('name').' was added.');
+        return redirect('/credit_cards')
+            ->with('alert', 'The credit card '.$request->input('name').' was added.');
     }
 
     /**
@@ -86,7 +88,8 @@ class CreditCardsController extends Controller
          $name = $credit_card->name;
          $credit_card->delete();
 
-         return redirect('/credit_cards')->with('alert', 'The credit card '.$name.' was deleted.');
+         return redirect('/credit_cards')
+             ->with('alert', 'The credit card '.$name.' was deleted.');
      }
 
     /**
@@ -97,8 +100,10 @@ class CreditCardsController extends Controller
     public function calculate(Request $request) {
         $credit_cards = \Request::get('credit_cards');
 
+        # Didn't select any cards:
         if(!$credit_cards) {
-            return redirect('/')->with('alert-danger', 'You must select at least one credit card');
+            return redirect('/')
+                ->with('alert-danger', 'You must select at least one credit card');
         }
 
         $credit_cards = array_values($credit_cards);

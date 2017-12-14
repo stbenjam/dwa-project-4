@@ -41,7 +41,8 @@ class CategoriesController extends Controller
         $category->name = $request->input('name');
         $category->save();
 
-        return redirect('/categories')->with('alert', 'The category '.$request->input('name').' was added.');
+        return redirect('/categories')
+            ->with('alert', 'The category '.$request->input('name').' was added.');
     }
 
     /**
@@ -71,7 +72,8 @@ class CategoriesController extends Controller
         $category->name = $request->input('name');
         $category->save();
 
-        return redirect('/categories')->with('alert', 'The category '.$request->input('name').' was updated.');
+        return redirect('/categories')
+            ->with('alert', 'The category '.$request->input('name').' was updated.');
     }
 
     /**
@@ -85,6 +87,7 @@ class CategoriesController extends Controller
 
          $category->delete();
 
-         return redirect('/categories')->with('alert', 'The category '.$name.' was deleted.');
+         return redirect('/categories')
+             ->with('alert', 'The category '.$name.' was deleted.');
      }
 }
